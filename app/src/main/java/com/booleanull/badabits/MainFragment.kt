@@ -18,6 +18,10 @@ class MainFragment: BaseFragment() {
 
     private val navigatorHolder: NavigatorHolder by inject()
 
+    private val navigator by lazy {
+        SupportAppNavigator(requireActivity(), childFragmentManager, R.id.mainContainer)
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -44,7 +48,7 @@ class MainFragment: BaseFragment() {
 
     override fun onResume() {
         super.onResume()
-        navigatorHolder.setNavigator(SupportAppNavigator(requireActivity(), childFragmentManager, R.id.mainContainer))
+        navigatorHolder.setNavigator(navigator)
     }
 
     override fun onPause() {
