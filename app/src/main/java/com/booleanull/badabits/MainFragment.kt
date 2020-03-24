@@ -8,8 +8,8 @@ import android.view.ViewGroup
 import android.widget.FrameLayout
 import android.widget.ProgressBar
 import androidx.core.view.isVisible
-import com.booleanull.core_ui.ui.BaseFragment
-import com.booleanull.main_feature.ui.screen.NavigationScreen
+import com.booleanull.core_ui.component.BaseFragment
+import com.booleanull.main_feature_ui.component.screen.NavigationScreen
 import org.koin.android.ext.android.inject
 import ru.terrakok.cicerone.NavigatorHolder
 import ru.terrakok.cicerone.android.support.SupportAppNavigator
