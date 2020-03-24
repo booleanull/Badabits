@@ -7,13 +7,13 @@ import android.view.ViewGroup
 import com.booleanull.core_ui.component.BaseFragment
 import com.booleanull.main_feature_ui.R
 
-class SecondFragment : BaseFragment() {
+class GraphFragment : BaseFragment() {
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_second, container, false)
+        return inflater.inflate(R.layout.fragment_graph, container, false)
     }
 }

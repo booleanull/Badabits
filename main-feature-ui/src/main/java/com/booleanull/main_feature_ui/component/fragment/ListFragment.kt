@@ -13,7 +13,7 @@ import org.koin.android.ext.android.inject
 import ru.terrakok.cicerone.Router
 import ru.terrakok.cicerone.android.support.SupportAppNavigator
 
-class FirstFragment : BaseFragment(), LocalNavigationFragment {
+class ListFragment : BaseFragment(), LocalNavigationFragment {
 
     private val localNavigationHolder: LocalNavigationHolder by inject()
 
@@ -22,7 +22,7 @@ class FirstFragment : BaseFragment(), LocalNavigationFragment {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_first, container, false)
+        return inflater.inflate(R.layout.fragment_list, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -31,13 +31,13 @@ class FirstFragment : BaseFragment(), LocalNavigationFragment {
     }
 
     override fun getLocalRouter(): Router {
-        return localNavigationHolder.getCicerone(FirstFragment::class.java.simpleName)
+        return localNavigationHolder.getCicerone(ListFragment::class.java.simpleName)
             .router
     }
 
     override fun onResume() {
         super.onResume()
-        localNavigationHolder.getCicerone(FirstFragment::class.java.simpleName)
+        localNavigationHolder.getCicerone(ListFragment::class.java.simpleName)
             .navigatorHolder.setNavigator(
             SupportAppNavigator(
                 activity,
@@ -48,7 +48,7 @@ class FirstFragment : BaseFragment(), LocalNavigationFragment {
     }
 
     override fun onPause() {
-        localNavigationHolder.getCicerone(FirstFragment::class.java.simpleName)
+        localNavigationHolder.getCicerone(ListFragment::class.java.simpleName)
             .navigatorHolder
             .removeNavigator()
         super.onPause()
