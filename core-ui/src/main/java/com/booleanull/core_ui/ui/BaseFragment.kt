@@ -6,5 +6,5 @@ import ru.terrakok.cicerone.Router
 
 open class BaseFragment: Fragment() {
 
-    private val router: Router by inject()
+    val router: Router by inject()
 }
