@@ -8,7 +8,7 @@ import com.booleanull.core_ui.component.BaseFragment
 import com.booleanull.core_ui.component.LocalNavigationFragment
 import com.booleanull.core_ui.component.LocalNavigationHolder
 import com.booleanull.main_feature_ui.R
-import com.booleanull.main_feature_ui.component.screen.FirstSecondScreen
+import com.booleanull.main_feature_ui.component.screen.HabitsListScreen
 import org.koin.android.ext.android.inject
 import ru.terrakok.cicerone.Router
 import ru.terrakok.cicerone.android.support.SupportAppNavigator
@@ -27,7 +27,7 @@ class ListFragment : BaseFragment(), LocalNavigationFragment {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        getLocalRouter().replaceScreen(FirstSecondScreen())
+        getLocalRouter().replaceScreen(HabitsListScreen())
     }
 
     override fun getLocalRouter(): Router {
