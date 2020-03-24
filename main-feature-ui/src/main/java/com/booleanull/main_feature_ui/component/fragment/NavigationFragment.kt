@@ -31,7 +31,8 @@ class NavigationFragment : BaseFragment() {
             )
             return@setOnNavigationItemSelectedListener true
         }
-        if (savedInstanceState == null) {
+
+        if(savedInstanceState == null) {
             navigationView.selectedItemId = R.id.action_list
         }
     }

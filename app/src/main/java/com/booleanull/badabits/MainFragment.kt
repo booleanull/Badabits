@@ -42,7 +42,9 @@ class MainFragment: BaseFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        router.replaceScreen(NavigationScreen())
+        if (childFragmentManager.fragments.isEmpty()) {
+            router.replaceScreen(NavigationScreen())
+        }
         view.findViewById<ProgressBar>(R.id.mainProgress).isVisible = false
     }
 
