@@ -16,6 +16,10 @@ class GraphHostFragment : BaseFragment(), LocalNavigationFragment {
 
     private val localNavigationHolder: LocalNavigationHolder by inject()
 
+    private val navigator by lazy {
+        SupportAppNavigator(activity, childFragmentManager, R.id.container)
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -29,24 +33,18 @@ class GraphHostFragment : BaseFragment(), LocalNavigationFragment {
     }
 
     override fun getLocalRouter(): Router {
-        return localNavigationHolder.getCicerone(ListHostFragment::class.java.simpleName)
+        return localNavigationHolder.getCicerone(GraphHostFragment::class.java.simpleName)
             .router
     }
 
     override fun onResume() {
         super.onResume()
-        localNavigationHolder.getCicerone(ListHostFragment::class.java.simpleName)
-            .navigatorHolder.setNavigator(
-            SupportAppNavigator(
-                activity,
-                childFragmentManager,
-                R.id.container
-            )
-        )
+        localNavigationHolder.getCicerone(GraphHostFragment::class.java.simpleName)
+            .navigatorHolder.setNavigator(navigator)
     }
 
     override fun onPause() {
-        localNavigationHolder.getCicerone(ListHostFragment::class.java.simpleName)
+        localNavigationHolder.getCicerone(GraphHostFragment::class.java.simpleName)
             .navigatorHolder
             .removeNavigator()
         super.onPause()
