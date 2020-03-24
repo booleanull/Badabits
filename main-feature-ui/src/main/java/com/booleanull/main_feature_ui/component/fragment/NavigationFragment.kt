@@ -25,8 +25,8 @@ class NavigationFragment : BaseFragment() {
                 .beginTransaction()
                 .replace(
                     R.id.navigationContainer, when (it.itemId) {
-                        R.id.action_map -> FirstFragment()
-                        R.id.action_dial -> SecondFragment()
+                        R.id.action_list -> FirstFragment()
+                        R.id.action_graph -> SecondFragment()
                         else -> ThirdFragment()
                     }
                 )
@@ -34,7 +34,7 @@ class NavigationFragment : BaseFragment() {
             return@setOnNavigationItemSelectedListener true
         }
         if (savedInstanceState == null) {
-            navigationView.selectedItemId = R.id.action_map
+            navigationView.selectedItemId = R.id.action_list
         }
     }
 }
