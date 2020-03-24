@@ -6,7 +6,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.content.ContextCompat
 import com.booleanull.core_ui.component.BaseFragment
 import com.booleanull.main_feature_ui.R
 import com.google.android.material.appbar.AppBarLayout
@@ -44,7 +43,7 @@ class ListFragment : BaseFragment() {
             collapsing.setContentScrimColor(
                 argbEvaluator.evaluate(
                     progress,
-                    ContextCompat.getColor(requireContext(), R.color.design_default_color_primary),
+                    R.attr.colorPrimary,
                     Color.parseColor("#FFFFFF")
                 ) as Int
             )
