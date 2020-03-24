@@ -48,7 +48,7 @@ class MainFragment: BaseFragment() {
     }
 
     override fun onPause() {
-        super.onPause()
         navigatorHolder.removeNavigator()
+        super.onPause()
     }
 }
