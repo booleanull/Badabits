@@ -16,6 +16,8 @@ abstract class PlaceholderAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder
             notifyDataSetChanged()
         }
 
+    var itemClickListener: ((position: Int) -> Unit)? = null
+
     abstract fun onCreateItem(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder
 
     abstract fun onCreatePlaceholder(parent: ViewGroup, viewType: Int): PlaceholderViewHolder
@@ -44,8 +46,11 @@ abstract class PlaceholderAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder
     final override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         if (holder !is PlaceholderViewHolder) {
             onBindItem(holder, position)
-        } else {
-
+            itemClickListener?.let { listener ->
+                holder.itemView.setOnClickListener {
+                    listener.invoke(position)
+                }
+            }
         }
     }
 

@@ -2,11 +2,11 @@ package com.booleanull.main_feature_ui.component.screen
 
 import androidx.fragment.app.Fragment
 import com.booleanull.core_ui.component.BaseScreen
-import com.booleanull.main_feature_ui.component.fragment.ListFragment
+import com.booleanull.main_feature_ui.component.fragment.NewsDetailsFragment
 
-class HabitsListScreen : BaseScreen() {
+class NewsDetailsScreen: BaseScreen() {
 
     override fun getFragment(): Fragment {
-        return ListFragment()
+        return NewsDetailsFragment()
     }
 }

@@ -8,15 +8,16 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.booleanull.core_ui.component.BaseFragment
+import com.booleanull.core_ui.component.ChildBaseFragment
 import com.booleanull.main_feature_ui.R
 import com.booleanull.main_feature_ui.component.adapter.NewsAdapter
+import com.booleanull.main_feature_ui.component.screen.NewsDetailsScreen
 import com.booleanull.main_feature_ui.data.News
 import com.google.android.material.appbar.AppBarLayout
 import kotlinx.android.synthetic.main.fragment_list.*
 import kotlin.math.min
 
-class ListFragment : BaseFragment() {
+class ListFragment : ChildBaseFragment() {
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -35,7 +36,10 @@ class ListFragment : BaseFragment() {
             testList.add(News(i, "String $i"))
         }
         newsRecyclerView.adapter = NewsAdapter().apply {
-            //data = testList
+            data = testList
+            itemClickListener = { position ->
+                getLocalRouter().navigateTo(NewsDetailsScreen())
+            }
         }
         newsRecyclerView.addItemDecoration(object : RecyclerView.ItemDecoration() {
             override fun getItemOffsets(
