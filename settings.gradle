@@ -1,2 +1,3 @@
 rootProject.name='Badabits'
 include ':app'
+include ':core'

@@ -1,4 +1,4 @@
-package com.example.badabits
+package com.booleanull.badabits
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
