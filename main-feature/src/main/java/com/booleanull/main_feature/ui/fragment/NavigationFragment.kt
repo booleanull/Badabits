@@ -1,4 +1,4 @@
-package com.booleanull.main_feature.ui
+package com.booleanull.main_feature.ui.fragment
 
 import android.os.Bundle
 import android.view.LayoutInflater
