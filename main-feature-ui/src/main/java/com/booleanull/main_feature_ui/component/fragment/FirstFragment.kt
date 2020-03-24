@@ -1,14 +1,14 @@
-package com.booleanull.main_feature.ui.fragment
+package com.booleanull.main_feature_ui.component.fragment
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.booleanull.core_ui.ui.BaseFragment
-import com.booleanull.core_ui.ui.LocalNavigationFragment
-import com.booleanull.core_ui.ui.LocalNavigationHolder
-import com.booleanull.main_feature.R
-import com.booleanull.main_feature.ui.screen.FirstSecondScreen
+import com.booleanull.core_ui.component.BaseFragment
+import com.booleanull.core_ui.component.LocalNavigationFragment
+import com.booleanull.core_ui.component.LocalNavigationHolder
+import com.booleanull.main_feature_ui.R
+import com.booleanull.main_feature_ui.component.screen.FirstSecondScreen
 import org.koin.android.ext.android.inject
 import ru.terrakok.cicerone.Router
 import ru.terrakok.cicerone.android.support.SupportAppNavigator

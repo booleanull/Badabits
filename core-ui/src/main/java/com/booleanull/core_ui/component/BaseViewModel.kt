@@ -1,4 +1,4 @@
-package com.booleanull.core_ui.ui
+package com.booleanull.core_ui.component
 
 import androidx.lifecycle.ViewModel
 

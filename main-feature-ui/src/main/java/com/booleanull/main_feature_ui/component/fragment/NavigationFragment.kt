@@ -1,11 +1,11 @@
-package com.booleanull.main_feature.ui.fragment
+package com.booleanull.main_feature_ui.component.fragment
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.booleanull.core_ui.ui.BaseFragment
-import com.booleanull.main_feature.R
+import com.booleanull.core_ui.component.BaseFragment
+import com.booleanull.main_feature_ui.R
 import kotlinx.android.synthetic.main.fragment_navigation.*
 
 class NavigationFragment : BaseFragment() {

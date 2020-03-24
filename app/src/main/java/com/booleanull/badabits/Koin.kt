@@ -1,6 +1,6 @@
 package com.booleanull.badabits
 
-import com.booleanull.core_ui.ui.LocalNavigationHolder
+import com.booleanull.core_ui.component.LocalNavigationHolder
 import org.koin.dsl.module
 import ru.terrakok.cicerone.Cicerone
 import ru.terrakok.cicerone.Router

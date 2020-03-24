@@ -34,9 +34,8 @@ android {
 }
 
 dependencies {
-    implementation project(":core")
     implementation project(":core-ui")
-    implementation project(":main-feature")
+    implementation project(":main-feature-ui")
 
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
