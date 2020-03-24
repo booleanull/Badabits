@@ -1,5 +1,7 @@
 package com.booleanull.core_ui.ui
 
-open class BaseScreen {
+import ru.terrakok.cicerone.android.support.SupportAppScreen
+
+open class BaseScreen : SupportAppScreen() {
 
 }
