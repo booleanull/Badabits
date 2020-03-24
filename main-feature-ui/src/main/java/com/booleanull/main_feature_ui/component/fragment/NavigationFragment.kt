@@ -25,9 +25,9 @@ class NavigationFragment : BaseFragment() {
                 .beginTransaction()
                 .replace(
                     R.id.navigationContainer, when (it.itemId) {
-                        R.id.action_list -> ListFragment()
-                        R.id.action_graph -> GraphFragment()
-                        else -> AchievementFragment()
+                        R.id.action_list -> ListHostFragment()
+                        R.id.action_graph -> GraphHostFragment()
+                        else -> AchievementHostFragment()
                     }
                 )
                 .commit()

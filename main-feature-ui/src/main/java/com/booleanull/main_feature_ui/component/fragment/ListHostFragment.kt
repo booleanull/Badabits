@@ -8,11 +8,12 @@ import com.booleanull.core_ui.component.BaseFragment
 import com.booleanull.core_ui.component.LocalNavigationFragment
 import com.booleanull.core_ui.component.LocalNavigationHolder
 import com.booleanull.main_feature_ui.R
+import com.booleanull.main_feature_ui.component.screen.HabitsListScreen
 import org.koin.android.ext.android.inject
 import ru.terrakok.cicerone.Router
 import ru.terrakok.cicerone.android.support.SupportAppNavigator
 
-class AchievementFragment : BaseFragment(), LocalNavigationFragment {
+class ListHostFragment : BaseFragment(), LocalNavigationFragment {
 
     private val localNavigationHolder: LocalNavigationHolder by inject()
 
@@ -21,21 +22,22 @@ class AchievementFragment : BaseFragment(), LocalNavigationFragment {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_achievement, container, false)
+        return inflater.inflate(R.layout.fragment_list_host, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        getLocalRouter().replaceScreen(HabitsListScreen())
     }
 
     override fun getLocalRouter(): Router {
-        return localNavigationHolder.getCicerone(ListFragment::class.java.simpleName)
+        return localNavigationHolder.getCicerone(ListHostFragment::class.java.simpleName)
             .router
     }
 
     override fun onResume() {
         super.onResume()
-        localNavigationHolder.getCicerone(ListFragment::class.java.simpleName)
+        localNavigationHolder.getCicerone(ListHostFragment::class.java.simpleName)
             .navigatorHolder.setNavigator(
             SupportAppNavigator(
                 activity,
@@ -46,7 +48,7 @@ class AchievementFragment : BaseFragment(), LocalNavigationFragment {
     }
 
     override fun onPause() {
-        localNavigationHolder.getCicerone(ListFragment::class.java.simpleName)
+        localNavigationHolder.getCicerone(ListHostFragment::class.java.simpleName)
             .navigatorHolder
             .removeNavigator()
         super.onPause()

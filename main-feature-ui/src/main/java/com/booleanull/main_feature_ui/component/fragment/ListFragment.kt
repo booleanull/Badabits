@@ -1,21 +1,19 @@
 package com.booleanull.main_feature_ui.component.fragment
 
+import android.animation.ArgbEvaluator
+import android.graphics.Color
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
 import com.booleanull.core_ui.component.BaseFragment
-import com.booleanull.core_ui.component.LocalNavigationFragment
-import com.booleanull.core_ui.component.LocalNavigationHolder
 import com.booleanull.main_feature_ui.R
-import com.booleanull.main_feature_ui.component.screen.HabitsListScreen
-import org.koin.android.ext.android.inject
-import ru.terrakok.cicerone.Router
-import ru.terrakok.cicerone.android.support.SupportAppNavigator
+import com.google.android.material.appbar.AppBarLayout
+import kotlinx.android.synthetic.main.fragment_list.*
+import kotlin.math.min
 
-class ListFragment : BaseFragment(), LocalNavigationFragment {
-
-    private val localNavigationHolder: LocalNavigationHolder by inject()
+class ListFragment : BaseFragment() {
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -27,30 +25,28 @@ class ListFragment : BaseFragment(), LocalNavigationFragment {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        getLocalRouter().replaceScreen(HabitsListScreen())
+        appbar.addOnOffsetChangedListener(appBarLayoutChanged)
     }
 
-    override fun getLocalRouter(): Router {
-        return localNavigationHolder.getCicerone(ListFragment::class.java.simpleName)
-            .router
-    }
-
-    override fun onResume() {
-        super.onResume()
-        localNavigationHolder.getCicerone(ListFragment::class.java.simpleName)
-            .navigatorHolder.setNavigator(
-            SupportAppNavigator(
-                activity,
-                childFragmentManager,
-                R.id.container
+    private val appBarLayoutChanged =
+        AppBarLayout.OnOffsetChangedListener { appBarLayout, verticalOffset ->
+            val argbEvaluator = ArgbEvaluator()
+            val threshold =
+                appBarLayout.totalScrollRange - requireContext().resources.displayMetrics.density * 56f
+            val progress = min(1f, kotlin.math.abs(verticalOffset) / threshold)
+            tvTitle.setTextColor(
+                argbEvaluator.evaluate(
+                    progress,
+                    Color.parseColor("#FFFFFF"),
+                    Color.parseColor("#000000")
+                ) as Int
             )
-        )
-    }
-
-    override fun onPause() {
-        localNavigationHolder.getCicerone(ListFragment::class.java.simpleName)
-            .navigatorHolder
-            .removeNavigator()
-        super.onPause()
-    }
+            collapsing.setContentScrimColor(
+                argbEvaluator.evaluate(
+                    progress,
+                    ContextCompat.getColor(requireContext(), R.color.design_default_color_primary),
+                    Color.parseColor("#FFFFFF")
+                ) as Int
+            )
+        }
 }
