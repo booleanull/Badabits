@@ -1,3 +1,4 @@
 rootProject.name='Badabits'
 include ':app'
 include ':core'
+include ':core-ui'
