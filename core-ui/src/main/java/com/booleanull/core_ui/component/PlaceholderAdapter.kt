@@ -44,6 +44,8 @@ abstract class PlaceholderAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder
     final override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         if (holder !is PlaceholderViewHolder) {
             onBindItem(holder, position)
+        } else {
+
         }
     }
 

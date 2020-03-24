@@ -34,7 +34,6 @@ class NewsAdapter : PlaceholderAdapter() {
     override fun onBindItem(holder: RecyclerView.ViewHolder, position: Int) {
         (data[position] as? News)?.let {
             (holder as ViewHolder).bind(it)
-
         }
     }
 

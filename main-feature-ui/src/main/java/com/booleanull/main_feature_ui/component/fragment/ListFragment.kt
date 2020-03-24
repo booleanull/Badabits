@@ -35,7 +35,7 @@ class ListFragment : BaseFragment() {
             testList.add(News(i, "String $i"))
         }
         newsRecyclerView.adapter = NewsAdapter().apply {
-            data = testList
+            //data = testList
         }
         newsRecyclerView.addItemDecoration(object : RecyclerView.ItemDecoration() {
             override fun getItemOffsets(
