@@ -23,6 +23,7 @@ class MainFragment: BaseFragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        // TODO: Think about loading
         return FrameLayout(requireContext()).apply {
             id = R.id.mainContainer
             layoutParams = ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT)
