@@ -13,6 +13,10 @@ import kotlinx.android.synthetic.main.view_list_info.view.*
 class NewsAdapter : RecyclerView.Adapter<NewsAdapter.ViewHolder>() {
 
     var loading = true
+        set(value) {
+            field = value
+            notifyDataSetChanged()
+        }
 
     var data: List<News> = mutableListOf()
         set(value) {

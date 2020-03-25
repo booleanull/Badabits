@@ -9,14 +9,20 @@ import androidx.recyclerview.widget.RecyclerView
 import com.booleanull.core_ui.component.ChildBaseFragment
 import com.booleanull.main_feature_ui.R
 import com.booleanull.main_feature_ui.component.adapter.NewsAdapter
-import com.booleanull.main_feature_ui.data.News
+import com.booleanull.main_feature_ui.component.viewmodel.ListViewModel
 import com.google.android.material.appbar.AppBarLayout
 import kotlinx.android.synthetic.main.fragment_list.*
+import org.koin.androidx.viewmodel.ext.android.viewModel
 import kotlin.math.abs
 import kotlin.math.min
-import android.os.CountDownTimer as CountDownTimer1
 
 class ListFragment : ChildBaseFragment() {
+
+    private val viewModel: ListViewModel by viewModel()
+
+    private val newsAdapter by lazy {
+        NewsAdapter()
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -29,22 +35,7 @@ class ListFragment : ChildBaseFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         appbar.addOnOffsetChangedListener(appBarLayoutChanged)
-
-        val testList = mutableListOf<News>()
-        testList.add(News(0, "Обновления", true, false))
-        testList.add(News(1, "Помидорка спелая", false, true))
-        val newsAdapter = NewsAdapter()
         newsRecyclerView.adapter = newsAdapter
-        val countDownTimer = object : CountDownTimer1(4000, 1000) {
-            override fun onFinish() {
-                newsAdapter.data = testList
-            }
-
-            override fun onTick(millisUntilFinished: Long) {
-
-            }
-
-        }.start()
         newsRecyclerView.addItemDecoration(object : RecyclerView.ItemDecoration() {
             override fun getItemOffsets(
                 outRect: Rect,

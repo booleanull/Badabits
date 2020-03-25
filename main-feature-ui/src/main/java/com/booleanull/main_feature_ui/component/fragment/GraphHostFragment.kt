@@ -8,6 +8,7 @@ import com.booleanull.core_ui.component.BaseFragment
 import com.booleanull.core_ui.component.LocalNavigationFragment
 import com.booleanull.core_ui.component.LocalNavigationHolder
 import com.booleanull.main_feature_ui.R
+import com.booleanull.main_feature_ui.component.screen.GraphScreen
 import org.koin.android.ext.android.inject
 import ru.terrakok.cicerone.Router
 import ru.terrakok.cicerone.android.support.SupportAppNavigator
@@ -30,6 +31,9 @@ class GraphHostFragment : BaseFragment(), LocalNavigationFragment {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        if (childFragmentManager.fragments.isEmpty()) {
+            getLocalRouter().replaceScreen(GraphScreen())
+        }
     }
 
     override fun getLocalRouter(): Router {
