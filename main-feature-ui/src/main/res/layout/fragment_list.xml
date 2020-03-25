@@ -99,7 +99,6 @@
                     android:layout_marginTop="8dp"
                     app:cardCornerRadius="16dp"
                     app:cardElevation="4dp"
-
                     app:cardBackgroundColor="#FAFAFA"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/newsRecyclerView" />
@@ -107,8 +106,10 @@
             </FrameLayout>
 
             <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/habitRecyclerView"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"/>
 
         </LinearLayout>
 

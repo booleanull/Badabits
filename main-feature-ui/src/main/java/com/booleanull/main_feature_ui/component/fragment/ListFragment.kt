@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.booleanull.core_ui.component.ChildBaseFragment
 import com.booleanull.main_feature_ui.R
+import com.booleanull.main_feature_ui.component.adapter.HabitAdapter
 import com.booleanull.main_feature_ui.component.adapter.NewsAdapter
 import com.booleanull.main_feature_ui.component.viewmodel.ListViewModel
 import com.google.android.material.appbar.AppBarLayout
@@ -22,6 +23,12 @@ class ListFragment : ChildBaseFragment() {
 
     private val newsAdapter by lazy {
         NewsAdapter()
+    }
+
+    private val habitAdapter by lazy {
+        HabitAdapter().apply {
+            //data = listOf(Habit(0, "Bkdlj dklas", "2d 1h"), Habit(1, "Qjks kldsajklskl asjdkla", "2d 1h"))
+        }
     }
 
     override fun onCreateView(
@@ -48,6 +55,22 @@ class ListFragment : ChildBaseFragment() {
                     outRect.left = requireContext().resources.displayMetrics.density.toInt() * 16
                 }
                 outRect.right = requireContext().resources.displayMetrics.density.toInt() * 16
+            }
+        })
+
+        habitRecyclerView.adapter = habitAdapter
+        habitRecyclerView.addItemDecoration(object : RecyclerView.ItemDecoration() {
+            override fun getItemOffsets(
+                outRect: Rect,
+                view: View,
+                parent: RecyclerView,
+                state: RecyclerView.State
+            ) {
+                super.getItemOffsets(outRect, view, parent, state)
+                /*if (parent.getChildAdapterPosition(view) == 0) {
+                    outRect.top = requireContext().resources.displayMetrics.density.toInt() * 16
+                }*/
+                outRect.bottom = requireContext().resources.displayMetrics.density.toInt() * 16
             }
         })
     }
