@@ -30,7 +30,7 @@ class ListFragment : ChildBaseFragment() {
         appbar.addOnOffsetChangedListener(appBarLayoutChanged)
 
         val testList = mutableListOf<News>()
-        for (i in 0..10) {
+        for (i in 0..2) {
             testList.add(News(i, "String $i"))
         }
         newsRecyclerView.adapter = NewsAdapter().apply {

@@ -16,7 +16,6 @@
         <com.google.android.material.appbar.CollapsingToolbarLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="#fff"
             android:stateListAnimator="@null"
             app:layout_scrollFlags="scroll|exitUntilCollapsed|snap">
 
@@ -36,6 +35,7 @@
                     app:srcCompat="@color/colorPrimary" />
 
                 <androidx.recyclerview.widget.RecyclerView
+                    android:overScrollMode="never"
                     android:id="@+id/newsRecyclerView"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
@@ -98,6 +98,8 @@
                     android:layout_marginTop="8dp"
                     app:cardCornerRadius="16dp"
                     app:cardElevation="4dp"
+
+                    app:cardBackgroundColor="#FAFAFA"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/newsRecyclerView" />
 
