@@ -43,6 +43,9 @@ class MainFragment: BaseFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        if (childFragmentManager.fragments.isNotEmpty()) {
+            view.findViewById<ProgressBar>(R.id.mainProgress).isVisible = false
+        }
         object : CountDownTimer(3000, 1000) {
             override fun onFinish() {
                 if (childFragmentManager.fragments.isEmpty()) {
