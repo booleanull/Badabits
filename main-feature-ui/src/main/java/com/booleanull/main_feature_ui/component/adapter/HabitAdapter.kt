@@ -28,7 +28,7 @@ class HabitAdapter : RecyclerView.Adapter<HabitAdapter.ViewHolder>() {
 
     override fun getItemCount(): Int {
         return if (loading) {
-            3
+            10
         } else {
             data.size
         }
