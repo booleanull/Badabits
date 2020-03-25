@@ -1,6 +1,5 @@
 package com.booleanull.main_feature_ui.component.adapter
 
-import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -50,27 +49,6 @@ class NewsAdapter : RecyclerView.Adapter<NewsAdapter.ViewHolder>() {
                 itemView.placeholderLogo
             )
             itemView.tvTitleInfo.text = item.title
-            itemView.placeholderTitle.apply {
-                setColors(
-                    intArrayOf(
-                        Color.parseColor("#DADADA"),
-                        Color.WHITE,
-                        Color.parseColor("#DADADA")
-                    )
-                )
-                setRadius(18f)
-            }
-            itemView.placeholderLogo.apply {
-                setColors(
-                    intArrayOf(
-                        Color.parseColor("#DADADA"),
-                        Color.WHITE,
-                        Color.parseColor("#DADADA")
-                    )
-                )
-                setRadius(156f)
-                setCircle(true)
-            }
             placeholders.forEach {
                 it.start()
             }

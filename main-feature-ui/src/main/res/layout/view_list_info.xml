@@ -14,11 +14,18 @@
         <com.booleanull.core_ui.widget.PlaceholderView
             android:id="@+id/placeholder"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="match_parent"
+            app:placeholderColorFirst="@color/colorPrimaryDark"
+            app:placeholderColorSecond="@color/colorPrimary"
+            app:placeholderColorThird="@color/colorPrimaryDark" />
 
         <com.booleanull.core_ui.widget.PlaceholderView
             android:id="@+id/placeholderLogo"
             android:layout_margin="8dp"
+            app:placeholderCircle="true"
+            app:placeholderColorFirst="@color/colorPlaceholderGray"
+            app:placeholderColorSecond="@android:color/white"
+            app:placeholderColorThird="@color/colorPlaceholderGray"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             android:layout_width="32dp"
@@ -37,6 +44,10 @@
 
         <com.booleanull.core_ui.widget.PlaceholderView
             tools:visibility="gone"
+            app:placeholderRadius="4dp"
+            app:placeholderColorFirst="@color/colorPlaceholderGray"
+            app:placeholderColorSecond="@android:color/white"
+            app:placeholderColorThird="@color/colorPlaceholderGray"
             android:id="@+id/placeholderTitle"
             android:layout_width="match_parent"
             android:layout_height="16dp"

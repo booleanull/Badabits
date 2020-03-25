@@ -6,6 +6,7 @@ import android.graphics.*
 import android.util.AttributeSet
 import android.view.View
 import android.view.animation.AccelerateDecelerateInterpolator
+import androidx.annotation.Dimension
 import androidx.core.content.ContextCompat
 import com.booleanull.core_ui.R
 import kotlin.math.tan
@@ -16,13 +17,14 @@ class PlaceholderView(context: Context, attrs: AttributeSet?, defStyleAttr: Int 
     constructor(context: Context) : this(context, null, 0)
     constructor(context: Context, attrs: AttributeSet?) : this(context, attrs, 0)
 
+    private var circle: Boolean = false
+    @Dimension
+    private var radius: Float? = null
     private var colors = intArrayOf(
         ContextCompat.getColor(context, R.color.design_default_color_primary_dark),
         ContextCompat.getColor(context, R.color.design_default_color_primary),
         ContextCompat.getColor(context, R.color.design_default_color_primary_dark)
     )
-    private var radius: Float? = null
-    private var circle: Boolean = false
 
     private var valueAnimator: ValueAnimator? = null
 
@@ -55,6 +57,17 @@ class PlaceholderView(context: Context, attrs: AttributeSet?, defStyleAttr: Int 
     }
 
     init {
+        context.obtainStyledAttributes(attrs, R.styleable.PlaceholderView).apply {
+            circle = getBoolean(R.styleable.PlaceholderView_placeholderCircle, false)
+            radius = getDimension(R.styleable.PlaceholderView_placeholderRadius, 0f)
+            colors = intArrayOf(
+                getColor(R.styleable.PlaceholderView_placeholderColorFirst, colors[0]),
+                getColor(R.styleable.PlaceholderView_placeholderColorSecond, colors[1]),
+                getColor(R.styleable.PlaceholderView_placeholderColorThird, colors[2])
+            )
+            recycle()
+        }
+
         valueAnimator = getDefaultValueAnimator().apply {
             addUpdateListener {
                 invalidate()
