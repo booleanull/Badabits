@@ -67,9 +67,9 @@ class ListFragment : ChildBaseFragment() {
                 state: RecyclerView.State
             ) {
                 super.getItemOffsets(outRect, view, parent, state)
-                /*if (parent.getChildAdapterPosition(view) == 0) {
-                    outRect.top = requireContext().resources.displayMetrics.density.toInt() * 16
-                }*/
+                if (parent.getChildAdapterPosition(view) == 0) {
+                    outRect.top = requireContext().resources.displayMetrics.density.toInt() * 4
+                }
                 outRect.bottom = requireContext().resources.displayMetrics.density.toInt() * 16
             }
         })

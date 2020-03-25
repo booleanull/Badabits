@@ -98,13 +98,13 @@ class PlaceholderView(context: Context, attrs: AttributeSet?, defStyleAttr: Int 
         super.onDraw(canvas)
         val tiltTan =
             tan(Math.toRadians(345.0)).toFloat()
-        val translateWidth: Float = 345 + tiltTan * 100
+        val translateWidth: Float = context.resources.displayMetrics.widthPixels.toFloat() + tiltTan * 100
         val animatedValue = valueAnimator?.animatedFraction ?: 0f
         val dx = offset(-translateWidth, translateWidth, animatedValue)
         val dy = 0f
 
         shaderMatrix.reset()
-        shaderMatrix.setRotate(340f, 300 / 2f, 500 / 2f)
+        shaderMatrix.setRotate(350f, width.toFloat() / 2, height.toFloat() / 2f)
         shaderMatrix.postTranslate(dx, dy)
         paint.shader.setLocalMatrix(shaderMatrix)
 
@@ -116,7 +116,7 @@ class PlaceholderView(context: Context, attrs: AttributeSet?, defStyleAttr: Int 
                 width.toFloat() / 2,
                 paint
             )
-            else -> canvas.drawRoundRect(0f, 0f, width.toFloat(), height.toFloat(), 10f, 10f, paint)
+            radius != null -> canvas.drawRoundRect(0f, 0f, width.toFloat(), height.toFloat(), radius!!, radius!!, paint)
         }
     }
 
@@ -124,7 +124,7 @@ class PlaceholderView(context: Context, attrs: AttributeSet?, defStyleAttr: Int 
         paint.shader = LinearGradient(
             0f,
             0f,
-            (parent as View).width.toFloat() - (parent as View).width.toFloat() / 10,
+            context.resources.displayMetrics.widthPixels.toFloat(),
             0f,
             colors,
             floatArrayOf(0.1f, 0.9f, 1f),
