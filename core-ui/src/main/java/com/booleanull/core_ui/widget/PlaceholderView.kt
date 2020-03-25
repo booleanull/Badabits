@@ -8,6 +8,7 @@ import android.view.View
 import android.view.animation.AccelerateDecelerateInterpolator
 import androidx.annotation.Dimension
 import androidx.core.content.ContextCompat
+import androidx.core.view.isVisible
 import com.booleanull.core_ui.R
 import kotlin.math.tan
 
@@ -33,10 +34,12 @@ class PlaceholderView(context: Context, attrs: AttributeSet?, defStyleAttr: Int 
 
     fun start() {
         valueAnimator?.start()
+        isVisible = true
     }
 
     fun stop() {
         valueAnimator?.cancel()
+        isVisible = false
     }
 
     fun setValueAnimator(animator: ValueAnimator) {
@@ -57,6 +60,7 @@ class PlaceholderView(context: Context, attrs: AttributeSet?, defStyleAttr: Int 
     }
 
     init {
+        isVisible = false
         context.obtainStyledAttributes(attrs, R.styleable.PlaceholderView).apply {
             circle = getBoolean(R.styleable.PlaceholderView_placeholderCircle, false)
             radius = getDimension(R.styleable.PlaceholderView_placeholderRadius, 0f)

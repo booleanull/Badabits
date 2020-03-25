@@ -14,6 +14,7 @@ import com.google.android.material.appbar.AppBarLayout
 import kotlinx.android.synthetic.main.fragment_list.*
 import kotlin.math.abs
 import kotlin.math.min
+import android.os.CountDownTimer as CountDownTimer1
 
 class ListFragment : ChildBaseFragment() {
 
@@ -30,12 +31,20 @@ class ListFragment : ChildBaseFragment() {
         appbar.addOnOffsetChangedListener(appBarLayoutChanged)
 
         val testList = mutableListOf<News>()
-        for (i in 0..2) {
-            testList.add(News(i, "String $i"))
-        }
-        newsRecyclerView.adapter = NewsAdapter().apply {
-            data = testList
-        }
+        testList.add(News(0, "Обновления", true, false))
+        testList.add(News(1, "Помидорка спелая", false, true))
+        val newsAdapter = NewsAdapter()
+        newsRecyclerView.adapter = newsAdapter
+        val countDownTimer = object : CountDownTimer1(4000, 1000) {
+            override fun onFinish() {
+                newsAdapter.data = testList
+            }
+
+            override fun onTick(millisUntilFinished: Long) {
+
+            }
+
+        }.start()
         newsRecyclerView.addItemDecoration(object : RecyclerView.ItemDecoration() {
             override fun getItemOffsets(
                 outRect: Rect,

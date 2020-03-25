@@ -3,6 +3,7 @@ package com.booleanull.main_feature_ui.component.adapter
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.isVisible
 import androidx.recyclerview.widget.RecyclerView
 import com.booleanull.core_ui.widget.PlaceholderView
 import com.booleanull.main_feature_ui.R
@@ -11,10 +12,13 @@ import kotlinx.android.synthetic.main.view_list_info.view.*
 
 class NewsAdapter : RecyclerView.Adapter<NewsAdapter.ViewHolder>() {
 
+    var loading = true
+
     var data: List<News> = mutableListOf()
         set(value) {
             field = value
             notifyDataSetChanged()
+            loading = false
         }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -28,13 +32,11 @@ class NewsAdapter : RecyclerView.Adapter<NewsAdapter.ViewHolder>() {
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        (data[position] as? News)?.let {
-            holder.bind(it)
-        }
+        holder.bind(data.elementAtOrNull(position))
     }
 
     override fun getItemCount(): Int {
-        return if (data.isEmpty()) {
+        return if (loading) {
             3
         } else {
             data.size
@@ -42,15 +44,26 @@ class NewsAdapter : RecyclerView.Adapter<NewsAdapter.ViewHolder>() {
     }
 
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        fun bind(item: News) {
+        fun bind(item: News?) {
             val placeholders = mutableListOf<PlaceholderView>(
                 itemView.placeholder,
                 itemView.placeholderTitle,
                 itemView.placeholderLogo
             )
-            itemView.tvTitleInfo.text = item.title
             placeholders.forEach {
-                it.start()
+                if (item == null) it.start()
+            }
+
+            item?.let {
+                itemView.tvTitleInfo.text = item.title
+                itemView.ivIcon.isVisible = item.icon
+                item.image.apply {
+                    itemView.ivBackground.isVisible = item.image
+                    itemView.ivBackgroundShadow.isVisible = item.image
+                }
+                placeholders.forEach {
+                    it.stop()
+                }
             }
         }
     }
