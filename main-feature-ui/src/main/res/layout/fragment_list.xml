@@ -3,15 +3,13 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="wrap_content">
 
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/appbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:elevation="0dp"
-        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
-        app:elevation="0dp">
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
 
         <com.google.android.material.appbar.CollapsingToolbarLayout
             android:layout_width="match_parent"
@@ -22,7 +20,7 @@
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/constraintLayout"
                 android:layout_width="match_parent"
-                android:layout_height="204dp"
+                android:layout_height="208dp"
                 app:layout_collapseMode="parallax"
                 app:layout_collapseParallaxMultiplier="0"
                 app:layout_scrollFlags="scroll|enterAlways|enterAlwaysCollapsed">
@@ -35,12 +33,12 @@
                     app:srcCompat="@color/colorPrimary" />
 
                 <androidx.recyclerview.widget.RecyclerView
-                    android:overScrollMode="never"
                     android:id="@+id/newsRecyclerView"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_marginTop="56dp"
                     android:orientation="horizontal"
+                    android:overScrollMode="never"
                     app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                     tools:listitem="@layout/view_list_info" />
 
@@ -65,7 +63,7 @@
                         android:layout_height="match_parent"
                         android:layout_margin="16dp"
                         android:gravity="center_vertical"
-                        android:text="@string/app_name"
+                        android:text="@string/habits"
                         android:textColor="@android:color/white"
                         android:textSize="16sp"
                         android:textStyle="bold" />
@@ -77,39 +75,15 @@
         </com.google.android.material.appbar.CollapsingToolbarLayout>
     </com.google.android.material.appbar.AppBarLayout>
 
-    <androidx.core.widget.NestedScrollView
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/habitRecyclerView"
         android:layout_width="match_parent"
+        android:paddingBottom="56dp"
         android:layout_height="wrap_content"
-        app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior">
+        android:overScrollMode="never"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        tools:layout_marginTop="212dp"
+        tools:listitem="@layout/view_habit_preview" />
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-
-            <FrameLayout
-                android:layout_width="match_parent"
-                android:layout_height="24dp"
-                android:background="@color/colorPrimary">
-
-                <androidx.cardview.widget.CardView
-                    android:layout_width="match_parent"
-                    android:layout_height="32dp"
-                    android:layout_marginTop="8dp"
-                    app:cardCornerRadius="16dp"
-                    app:cardElevation="4dp"
-
-                    app:cardBackgroundColor="#FAFAFA"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/newsRecyclerView" />
-
-            </FrameLayout>
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
-
-        </LinearLayout>
-
-    </androidx.core.widget.NestedScrollView>
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

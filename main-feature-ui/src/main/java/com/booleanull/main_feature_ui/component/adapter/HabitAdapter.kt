@@ -3,18 +3,17 @@ package com.booleanull.main_feature_ui.component.adapter
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.view.isVisible
 import androidx.recyclerview.widget.RecyclerView
 import com.booleanull.core_ui.widget.PlaceholderView
 import com.booleanull.main_feature_ui.R
-import com.booleanull.main_feature_ui.data.News
-import kotlinx.android.synthetic.main.view_list_info.view.*
+import com.booleanull.main_feature_ui.data.Habit
+import kotlinx.android.synthetic.main.view_habit_preview.view.*
 
-class NewsAdapter : RecyclerView.Adapter<NewsAdapter.ViewHolder>() {
+class HabitAdapter : RecyclerView.Adapter<HabitAdapter.ViewHolder>() {
 
     private var loading = true
 
-    var data = listOf<News>()
+    var data = listOf<Habit>()
         set(value) {
             field = value
             notifyDataSetChanged()
@@ -23,44 +22,34 @@ class NewsAdapter : RecyclerView.Adapter<NewsAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         return ViewHolder(
-            LayoutInflater.from(parent.context).inflate(
-                R.layout.view_list_info,
-                parent,
-                false
-            )
+            LayoutInflater.from(parent.context).inflate(R.layout.view_habit_preview, parent, false)
         )
+    }
+
+    override fun getItemCount(): Int {
+        return if (loading) {
+            6
+        } else {
+            data.size
+        }
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.bind(data.elementAtOrNull(position))
     }
 
-    override fun getItemCount(): Int {
-        return if (loading) {
-            3
-        } else {
-            data.size
-        }
-    }
-
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        fun bind(item: News?) {
+        fun bind(item: Habit?) {
             val placeholders = listOf<PlaceholderView>(
                 itemView.placeholder,
-                itemView.placeholderTitle,
-                itemView.placeholderLogo
+                itemView.placeholderIcon
             )
             if (item == null) placeholders.forEach {
                 it.start()
             }
-
             item?.let {
-                itemView.tvTitleInfo.text = item.title
-                itemView.ivIcon.isVisible = item.icon
-                item.image.apply {
-                    itemView.ivBackground.isVisible = item.image
-                    itemView.ivBackgroundShadow.isVisible = item.image
-                }
+                itemView.tvTitle.text = it.title
+                itemView.tvDate.text = it.date
                 placeholders.forEach {
                     it.stop()
                 }

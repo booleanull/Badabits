@@ -6,7 +6,9 @@ import android.graphics.*
 import android.util.AttributeSet
 import android.view.View
 import android.view.animation.AccelerateDecelerateInterpolator
+import androidx.annotation.Dimension
 import androidx.core.content.ContextCompat
+import androidx.core.view.isVisible
 import com.booleanull.core_ui.R
 import kotlin.math.tan
 
@@ -16,13 +18,14 @@ class PlaceholderView(context: Context, attrs: AttributeSet?, defStyleAttr: Int 
     constructor(context: Context) : this(context, null, 0)
     constructor(context: Context, attrs: AttributeSet?) : this(context, attrs, 0)
 
+    private var circle: Boolean = false
+    @Dimension
+    private var radius: Float? = null
     private var colors = intArrayOf(
         ContextCompat.getColor(context, R.color.design_default_color_primary_dark),
         ContextCompat.getColor(context, R.color.design_default_color_primary),
         ContextCompat.getColor(context, R.color.design_default_color_primary_dark)
     )
-    private var radius: Float? = null
-    private var circle: Boolean = false
 
     private var valueAnimator: ValueAnimator? = null
 
@@ -31,10 +34,12 @@ class PlaceholderView(context: Context, attrs: AttributeSet?, defStyleAttr: Int 
 
     fun start() {
         valueAnimator?.start()
+        isVisible = true
     }
 
     fun stop() {
         valueAnimator?.cancel()
+        isVisible = false
     }
 
     fun setValueAnimator(animator: ValueAnimator) {
@@ -55,6 +60,18 @@ class PlaceholderView(context: Context, attrs: AttributeSet?, defStyleAttr: Int 
     }
 
     init {
+        isVisible = false
+        context.obtainStyledAttributes(attrs, R.styleable.PlaceholderView).apply {
+            circle = getBoolean(R.styleable.PlaceholderView_placeholderCircle, false)
+            radius = getDimension(R.styleable.PlaceholderView_placeholderRadius, 0f)
+            colors = intArrayOf(
+                getColor(R.styleable.PlaceholderView_placeholderColorFirst, colors[0]),
+                getColor(R.styleable.PlaceholderView_placeholderColorSecond, colors[1]),
+                getColor(R.styleable.PlaceholderView_placeholderColorThird, colors[2])
+            )
+            recycle()
+        }
+
         valueAnimator = getDefaultValueAnimator().apply {
             addUpdateListener {
                 invalidate()
@@ -81,13 +98,13 @@ class PlaceholderView(context: Context, attrs: AttributeSet?, defStyleAttr: Int 
         super.onDraw(canvas)
         val tiltTan =
             tan(Math.toRadians(345.0)).toFloat()
-        val translateWidth: Float = 345 + tiltTan * 100
+        val translateWidth: Float = context.resources.displayMetrics.widthPixels.toFloat() + tiltTan * 100
         val animatedValue = valueAnimator?.animatedFraction ?: 0f
         val dx = offset(-translateWidth, translateWidth, animatedValue)
         val dy = 0f
 
         shaderMatrix.reset()
-        shaderMatrix.setRotate(340f, 300 / 2f, 500 / 2f)
+        shaderMatrix.setRotate(350f, width.toFloat() / 2, height.toFloat() / 2f)
         shaderMatrix.postTranslate(dx, dy)
         paint.shader.setLocalMatrix(shaderMatrix)
 
@@ -99,7 +116,7 @@ class PlaceholderView(context: Context, attrs: AttributeSet?, defStyleAttr: Int 
                 width.toFloat() / 2,
                 paint
             )
-            else -> canvas.drawRoundRect(0f, 0f, width.toFloat(), height.toFloat(), 10f, 10f, paint)
+            radius != null -> canvas.drawRoundRect(0f, 0f, width.toFloat(), height.toFloat(), radius!!, radius!!, paint)
         }
     }
 
@@ -107,7 +124,7 @@ class PlaceholderView(context: Context, attrs: AttributeSet?, defStyleAttr: Int 
         paint.shader = LinearGradient(
             0f,
             0f,
-            (parent as View).width.toFloat() - (parent as View).width.toFloat() / 10,
+            context.resources.displayMetrics.widthPixels.toFloat(),
             0f,
             colors,
             floatArrayOf(0.1f, 0.9f, 1f),

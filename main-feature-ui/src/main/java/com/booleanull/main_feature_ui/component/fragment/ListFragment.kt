@@ -8,14 +8,28 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.booleanull.core_ui.component.ChildBaseFragment
 import com.booleanull.main_feature_ui.R
+import com.booleanull.main_feature_ui.component.adapter.HabitAdapter
 import com.booleanull.main_feature_ui.component.adapter.NewsAdapter
-import com.booleanull.main_feature_ui.data.News
+import com.booleanull.main_feature_ui.component.viewmodel.ListViewModel
 import com.google.android.material.appbar.AppBarLayout
 import kotlinx.android.synthetic.main.fragment_list.*
+import org.koin.androidx.viewmodel.ext.android.viewModel
 import kotlin.math.abs
 import kotlin.math.min
 
 class ListFragment : ChildBaseFragment() {
+
+    private val viewModel: ListViewModel by viewModel()
+
+    private val newsAdapter by lazy {
+        NewsAdapter()
+    }
+
+    private val habitAdapter by lazy {
+        HabitAdapter().apply {
+            //data = listOf(Habit(0, "Bkdlj dklas", "2d 1h"), Habit(1, "Qjks kldsajklskl asjdkla", "2d 1h"))
+        }
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -28,14 +42,7 @@ class ListFragment : ChildBaseFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         appbar.addOnOffsetChangedListener(appBarLayoutChanged)
-
-        val testList = mutableListOf<News>()
-        for (i in 0..2) {
-            testList.add(News(i, "String $i"))
-        }
-        newsRecyclerView.adapter = NewsAdapter().apply {
-            data = testList
-        }
+        newsRecyclerView.adapter = newsAdapter
         newsRecyclerView.addItemDecoration(object : RecyclerView.ItemDecoration() {
             override fun getItemOffsets(
                 outRect: Rect,
@@ -48,6 +55,22 @@ class ListFragment : ChildBaseFragment() {
                     outRect.left = requireContext().resources.displayMetrics.density.toInt() * 16
                 }
                 outRect.right = requireContext().resources.displayMetrics.density.toInt() * 16
+            }
+        })
+
+        habitRecyclerView.adapter = habitAdapter
+        habitRecyclerView.addItemDecoration(object : RecyclerView.ItemDecoration() {
+            override fun getItemOffsets(
+                outRect: Rect,
+                view: View,
+                parent: RecyclerView,
+                state: RecyclerView.State
+            ) {
+                super.getItemOffsets(outRect, view, parent, state)
+                if (parent.getChildAdapterPosition(view) == 0) {
+                    outRect.top = requireContext().resources.displayMetrics.density.toInt() * 16
+                }
+                outRect.bottom = requireContext().resources.displayMetrics.density.toInt() * 16
             }
         })
     }

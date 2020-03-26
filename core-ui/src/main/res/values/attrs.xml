@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="PlaceholderView">
+        <attr name="placeholderCircle" format="boolean" />
+        <attr name="placeholderRadius" format="dimension" />
+        <attr name="placeholderColorFirst" format="color" />
+        <attr name="placeholderColorSecond" format="color" />
+        <attr name="placeholderColorThird" format="color" />
+    </declare-styleable>
+</resources>

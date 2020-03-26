@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="100dp"
     android:layout_height="140dp"
-    xmlns:tools="http://schemas.android.com/tools"
+    app:cardBackgroundColor="@color/colorPrimaryDark"
     app:cardCornerRadius="8dp"
     app:cardElevation="4dp">
 
@@ -11,32 +12,63 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <com.booleanull.core_ui.widget.PlaceholderView
-            android:id="@+id/placeholder"
+        <ImageView
+            android:id="@+id/ivBackground"
+            android:scaleType="centerCrop"
+            android:src="@drawable/test"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+        <ImageView
+            android:alpha="0.2"
+            android:background="@android:color/black"
+            android:id="@+id/ivBackgroundShadow"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
 
         <com.booleanull.core_ui.widget.PlaceholderView
+            android:id="@+id/placeholder"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:placeholderColorFirst="@color/colorPrimaryDark"
+            app:placeholderColorSecond="@color/colorPrimary"
+            app:placeholderColorThird="@color/colorPrimaryDark" />
+
+        <ImageView
+            android:id="@+id/ivIcon"
+            android:tint="@android:color/white"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:layout_margin="8dp"
+            android:src="@drawable/ic_search_black_24dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <com.booleanull.core_ui.widget.PlaceholderView
             android:id="@+id/placeholderLogo"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
             android:layout_margin="8dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            android:layout_width="32dp"
-            android:layout_height="32dp" />
+            app:placeholderCircle="true"
+            app:placeholderColorFirst="@color/colorPlaceholderGray"
+            app:placeholderColorSecond="@android:color/white"
+            app:placeholderColorThird="@color/colorPlaceholderGray" />
 
         <TextView
+            android:id="@+id/tvTitleInfo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
             android:textColor="@android:color/white"
             android:textStyle="bold"
-            android:id="@+id/tvTitleInfo"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            tools:text="Покупки"
-            android:layout_margin="8dp"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:text="Покупки" />
 
         <com.booleanull.core_ui.widget.PlaceholderView
-            tools:visibility="gone"
             android:id="@+id/placeholderTitle"
             android:layout_width="match_parent"
             android:layout_height="16dp"
@@ -44,7 +76,12 @@
             android:layout_marginEnd="16dp"
             android:layout_marginBottom="8dp"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:placeholderColorFirst="@color/colorPlaceholderGray"
+            app:placeholderColorSecond="@android:color/white"
+            app:placeholderColorThird="@color/colorPlaceholderGray"
+            app:placeholderRadius="4dp"
+            tools:visibility="gone" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
