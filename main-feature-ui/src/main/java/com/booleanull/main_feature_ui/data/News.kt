@@ -6,5 +6,6 @@ data class News(
     val id: Int,
     val title: String,
     val icon: Boolean,
-    val image: Boolean
+    val image: Boolean?,
+    val color: Int?
 ) : Item

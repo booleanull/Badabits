@@ -3,5 +3,5 @@
     <string name="habits">Привычки</string>
     <string name="graphs">Графики</string>
     <string name="achievements">Достижения</string>
-    <string name="message_in_develop">Данный раздел находится в разработке</string>
+    <string name="in_develop_message">Данный раздел\nнаходится в разработке</string>
 </resources>
