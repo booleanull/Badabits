@@ -1,3 +1,9 @@
 package com.booleanull.main_feature_ui.data
 
-data class Habit(val id: Int, val title: String, val date: String)
+import com.booleanull.core_ui.data.Item
+
+data class Habit(
+    val id: Int,
+    val title: String,
+    val date: String
+): Item
