@@ -1,7 +1,6 @@
 package com.booleanull.badabits
 
 import android.os.Bundle
-import android.os.CountDownTimer
 import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
@@ -43,20 +42,20 @@ class MainFragment: BaseFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        if (childFragmentManager.fragments.isNotEmpty()) {
+        /*if (childFragmentManager.fragments.isNotEmpty()) {
             view.findViewById<ProgressBar>(R.id.mainProgress).isVisible = false
-        }
-        object : CountDownTimer(3000, 1000) {
-            override fun onFinish() {
+        }*/
+        /*object : CountDownTimer(3000, 1000) {
+            override fun onFinish() {*/
                 if (childFragmentManager.fragments.isEmpty()) {
                     router.replaceScreen(NavigationScreen())
                 }
                 view.findViewById<ProgressBar>(R.id.mainProgress).isVisible = false
-            }
+        /*}
 
-            override fun onTick(millisUntilFinished: Long) {
-            }
-        }.start()
+        override fun onTick(millisUntilFinished: Long) {
+        }
+    }.start()*/
     }
 
     override fun onResume() {
