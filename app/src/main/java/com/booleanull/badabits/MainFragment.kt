@@ -14,7 +14,7 @@ import org.koin.android.ext.android.inject
 import ru.terrakok.cicerone.NavigatorHolder
 import ru.terrakok.cicerone.android.support.SupportAppNavigator
 
-class MainFragment: BaseFragment() {
+class MainFragment : BaseFragment() {
 
     private val navigatorHolder: NavigatorHolder by inject()
 
@@ -30,10 +30,16 @@ class MainFragment: BaseFragment() {
         // TODO: Think about loading
         return FrameLayout(requireContext()).apply {
             id = R.id.mainContainer
-            layoutParams = ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT)
+            layoutParams = ViewGroup.LayoutParams(
+                ViewGroup.LayoutParams.MATCH_PARENT,
+                ViewGroup.LayoutParams.MATCH_PARENT
+            )
             addView(ProgressBar(requireContext()).apply {
                 id = R.id.mainProgress
-                layoutParams = FrameLayout.LayoutParams(FrameLayout.LayoutParams.WRAP_CONTENT, FrameLayout.LayoutParams.WRAP_CONTENT).apply {
+                layoutParams = FrameLayout.LayoutParams(
+                    FrameLayout.LayoutParams.WRAP_CONTENT,
+                    FrameLayout.LayoutParams.WRAP_CONTENT
+                ).apply {
                     gravity = Gravity.CENTER
                 }
             })
@@ -42,20 +48,10 @@ class MainFragment: BaseFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        /*if (childFragmentManager.fragments.isNotEmpty()) {
-            view.findViewById<ProgressBar>(R.id.mainProgress).isVisible = false
-        }*/
-        /*object : CountDownTimer(3000, 1000) {
-            override fun onFinish() {*/
-                if (childFragmentManager.fragments.isEmpty()) {
-                    router.replaceScreen(NavigationScreen())
-                }
-                view.findViewById<ProgressBar>(R.id.mainProgress).isVisible = false
-        /*}
-
-        override fun onTick(millisUntilFinished: Long) {
+        if (childFragmentManager.fragments.isEmpty()) {
+            router.replaceScreen(NavigationScreen())
         }
-    }.start()*/
+        view.findViewById<ProgressBar>(R.id.mainProgress).isVisible = false
     }
 
     override fun onResume() {

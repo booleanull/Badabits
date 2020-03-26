@@ -1,5 +1,6 @@
 package com.booleanull.main_feature_ui.component.adapter
 
+import android.content.res.ColorStateList
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -55,11 +56,14 @@ class NewsAdapter : RecyclerView.Adapter<NewsAdapter.ViewHolder>() {
             }
 
             item?.let {
-                itemView.tvTitleInfo.text = item.title
+                itemView.tvTitle.text = item.title
                 itemView.ivIcon.isVisible = item.icon
-                item.image.apply {
+                item.image?.let {
                     itemView.ivBackground.isVisible = item.image
-                    itemView.ivBackgroundShadow.isVisible = item.image
+                }
+                item.color?.let {
+                    itemView.tvTitle.setTextColor(it)
+                    itemView.ivIcon.imageTintList = ColorStateList.valueOf(it)
                 }
                 placeholders.forEach {
                     it.stop()

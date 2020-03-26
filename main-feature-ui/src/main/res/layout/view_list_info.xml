@@ -14,17 +14,10 @@
 
         <ImageView
             android:id="@+id/ivBackground"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             android:scaleType="centerCrop"
-            android:src="@drawable/test"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" />
-
-        <ImageView
-            android:alpha="0.2"
-            android:background="@android:color/black"
-            android:id="@+id/ivBackgroundShadow"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:src="@drawable/test" />
 
         <com.booleanull.core_ui.widget.PlaceholderView
             android:id="@+id/placeholder"
@@ -36,11 +29,11 @@
 
         <ImageView
             android:id="@+id/ivIcon"
-            android:tint="@android:color/white"
             android:layout_width="32dp"
             android:layout_height="32dp"
             android:layout_margin="8dp"
             android:src="@drawable/ic_search_black_24dp"
+            android:tint="@android:color/white"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -57,7 +50,7 @@
             app:placeholderColorThird="@color/colorPlaceholderGray" />
 
         <TextView
-            android:id="@+id/tvTitleInfo"
+            android:id="@+id/tvTitle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="8dp"

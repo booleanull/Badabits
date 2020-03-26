@@ -19,6 +19,7 @@ class PlaceholderView(context: Context, attrs: AttributeSet?, defStyleAttr: Int 
     constructor(context: Context, attrs: AttributeSet?) : this(context, attrs, 0)
 
     private var circle: Boolean = false
+
     @Dimension
     private var radius: Float? = null
     private var colors = intArrayOf(
@@ -98,13 +99,14 @@ class PlaceholderView(context: Context, attrs: AttributeSet?, defStyleAttr: Int 
         super.onDraw(canvas)
         val tiltTan =
             tan(Math.toRadians(345.0)).toFloat()
-        val translateWidth: Float = context.resources.displayMetrics.widthPixels.toFloat() + tiltTan * 100
+        val translateWidth: Float =
+            context.resources.displayMetrics.widthPixels.toFloat() + tiltTan * 100
         val animatedValue = valueAnimator?.animatedFraction ?: 0f
         val dx = offset(-translateWidth, translateWidth, animatedValue)
         val dy = 0f
 
         shaderMatrix.reset()
-        shaderMatrix.setRotate(350f, width.toFloat() / 2, height.toFloat() / 2f)
+        shaderMatrix.setRotate(345f, width.toFloat() / 2, height.toFloat() / 2f)
         shaderMatrix.postTranslate(dx, dy)
         paint.shader.setLocalMatrix(shaderMatrix)
 
@@ -116,7 +118,15 @@ class PlaceholderView(context: Context, attrs: AttributeSet?, defStyleAttr: Int 
                 width.toFloat() / 2,
                 paint
             )
-            radius != null -> canvas.drawRoundRect(0f, 0f, width.toFloat(), height.toFloat(), radius!!, radius!!, paint)
+            radius != null -> canvas.drawRoundRect(
+                0f,
+                0f,
+                width.toFloat(),
+                height.toFloat(),
+                radius!!,
+                radius!!,
+                paint
+            )
         }
     }
 
