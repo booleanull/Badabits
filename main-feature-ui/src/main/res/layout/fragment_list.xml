@@ -79,6 +79,7 @@
         android:id="@+id/progressBar"
         android:layout_width="24dp"
         android:layout_height="24dp"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
         android:layout_gravity="center"
         android:interpolator="@android:anim/accelerate_interpolator"/>
 
