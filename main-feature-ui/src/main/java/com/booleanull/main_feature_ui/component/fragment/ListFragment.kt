@@ -42,8 +42,24 @@ class ListFragment : ChildBaseFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         appbar.addOnOffsetChangedListener(appBarLayoutChanged)
+
         newsRecyclerView.adapter = newsAdapter
-        newsRecyclerView.addItemDecoration(object : RecyclerView.ItemDecoration() {
+        newsRecyclerView.addItemDecoration(newsItemDecorator)
+
+        habitRecyclerView.adapter = habitAdapter
+        habitRecyclerView.addItemDecoration(habitItemDecoration)
+    }
+
+    private val appBarLayoutChanged =
+        AppBarLayout.OnOffsetChangedListener { appBarLayout, verticalOffset ->
+            val threshold =
+                appBarLayout.totalScrollRange - requireContext().resources.displayMetrics.density * 56f
+            val progress = min(1f, abs(verticalOffset) / threshold)
+            newsRecyclerView.alpha = 1 - progress
+        }
+
+    private val newsItemDecorator =
+        object : RecyclerView.ItemDecoration() {
             override fun getItemOffsets(
                 outRect: Rect,
                 view: View,
@@ -56,10 +72,10 @@ class ListFragment : ChildBaseFragment() {
                 }
                 outRect.right = requireContext().resources.displayMetrics.density.toInt() * 16
             }
-        })
+        }
 
-        habitRecyclerView.adapter = habitAdapter
-        habitRecyclerView.addItemDecoration(object : RecyclerView.ItemDecoration() {
+    private val habitItemDecoration =
+        object : RecyclerView.ItemDecoration() {
             override fun getItemOffsets(
                 outRect: Rect,
                 view: View,
@@ -72,14 +88,5 @@ class ListFragment : ChildBaseFragment() {
                 }
                 outRect.bottom = requireContext().resources.displayMetrics.density.toInt() * 16
             }
-        })
-    }
-
-    private val appBarLayoutChanged =
-        AppBarLayout.OnOffsetChangedListener { appBarLayout, verticalOffset ->
-            val threshold =
-                appBarLayout.totalScrollRange - requireContext().resources.displayMetrics.density * 56f
-            val progress = min(1f, abs(verticalOffset) / threshold)
-            newsRecyclerView.alpha = 1 - progress
         }
 }
